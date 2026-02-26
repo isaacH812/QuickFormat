@@ -95,10 +95,11 @@ ignore \r
 Transistions
 // whitespace
 s0 ignore s11
+s0 space s11
+s11 space s11
 s11 ignore s11
 
 // Text ( allows trailing spaces )
-s0 space s1
 s0 punc s1
 s0 Alpha s1
 s0 digit s1
@@ -131,6 +132,7 @@ s0 delimOpen s5
 // Token Type
 Token Types
 s11 Ignore
+s12 Ignore
 s1 Text
 s2 Tag
 s3 Digit

@@ -7,9 +7,7 @@
     <title>Document</title>
 </head>
     <div class="main">
-        <div class="editor">
-            <textarea class="text-input" id="text-input" ></textarea>
-        </div>  
+        <div id="editor" class="editor"  contenteditable="true" spellcheck="false"> </div>  
         <div class="divider"></div>
         <div class="preview" id="preview"></div>
     </div>
@@ -18,7 +16,9 @@
         <button>Render</button>
         
     </div>
+
     <script src="table.js"></script>
+    <script src="attributeMap.js"></script>
     <script src="resize.js"></script>
     <script src="tokenizer.js"></script>
     <script src="parser.js"></script>

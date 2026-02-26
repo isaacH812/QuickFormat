@@ -3,6 +3,7 @@ class Token{
         this.type = type;
         this.value = value;
         this.index = -1;
+        this.errors = [];
 
     }
 
