@@ -1,0 +1,141 @@
+// character classes
+
+Alpha A
+Alpha B
+Alpha C
+Alpha D
+Alpha E
+Alpha F
+Alpha G
+Alpha H
+Alpha I
+Alpha J
+Alpha K
+Alpha L
+Alpha M
+Alpha N
+Alpha O
+Alpha P
+Alpha Q
+Alpha R
+Alpha S
+Alpha T
+Alpha U
+Alpha V
+Alpha W
+Alpha X
+Alpha Y
+Alpha Z
+
+alpha a
+alpha b
+alpha c
+alpha d
+alpha e
+alpha f
+alpha g
+alpha h
+alpha i
+alpha j
+alpha k
+alpha l
+alpha m
+alpha n
+alpha o
+alpha p
+alpha q
+alpha r
+alpha s
+alpha t
+alpha u
+alpha v
+alpha w
+alpha x
+alpha y
+alpha z
+
+punc .
+punc ,
+punc ?
+punc /
+punc !
+punc #
+punc -
+punc _
+punc '
+punc "
+punc :
+punc ;
+
+digit 0
+digit 1
+digit 2
+digit 3
+digit 4
+digit 5
+digit 6
+digit 7
+digit 8
+digit 9
+
+startTag \
+
+delimOpen {
+delimClose }
+
+AttOpen [
+AttClose ]
+
+space /_
+ignore \t
+ignore \n
+ignore \r
+
+
+Transistions
+// whitespace
+s0 ignore s11
+s11 ignore s11
+
+// Text ( allows trailing spaces )
+s0 space s1
+s0 punc s1
+s0 Alpha s1
+s0 digit s1
+s0 alpha s1
+s1 alpha s1
+s1 space s1
+s1 Alpha s1
+s1 punc s1
+s1 digit s1
+
+
+// Tag
+s0 startTag s2
+s2 alpha s2
+s2 Alpha s2
+
+// Attributes
+s0 AttOpen s6
+s0 AttClose s7
+
+
+// Capitals in Word
+s1 Alpha s1
+
+// Deliminator
+s0 delimClose s4
+s0 delimOpen s5
+
+
+// Token Type
+Token Types
+s11 Ignore
+s1 Text
+s2 Tag
+s3 Digit
+s4 DelimClose
+s5 DelimOpen
+s6 AttOpen
+s7 AttClose
+

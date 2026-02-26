@@ -1,0 +1,80 @@
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    background-color: rgb(220, 202, 182);
+    max-height: 100vh   ;
+}
+
+.editor {
+    width: 50%;
+    background-color: rgb(252, 252, 251);
+}
+.editor > textarea{
+    width: 100%;
+    height: 100%;
+    resize: none;
+    padding: 2rem;
+    box-sizing: border-box;
+    border: none;
+}
+
+.editor > textarea:focus{
+    outline: none;
+}
+
+.text-input{
+    position: relative;
+    max-width: 98%;
+    max-height: 98%;
+}
+.preview {
+    position: relative;
+    flex: 1;
+    background-color: rgb(255, 255, 255);
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.options{
+    height: 5%;
+}
+
+.divider {
+    width: 6px;
+    cursor: col-resize;
+    background-color: rgb(180, 160, 140);
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+}
+
+.divider:hover, .divider.dragging {
+    background-color: rgb(120, 100, 80);
+}
+
+
+/* --- Classes For Preview Elements --- */
+
+.page {
+    background-color: rgb(237, 229, 213);
+    padding: 1rem;
+    width: 550px;
+    height: min(100%, 800px);
+    resize: none;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
