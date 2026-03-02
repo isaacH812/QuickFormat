@@ -60,12 +60,19 @@ punc ?
 punc /
 punc !
 punc #
+punc *
+punc &
+punc %
+punc $
 punc -
+punc @
 punc _
 punc '
 punc "
 punc :
 punc ;
+punc (
+punc )
 
 digit 0
 digit 1
@@ -95,11 +102,16 @@ ignore \r
 Transistions
 // whitespace
 s0 ignore s11
-s0 space s11
 s11 space s11
 s11 ignore s11
 
-// Text ( allows trailing spaces )
+// Text ( allows trailing a space )
+s0 space s12
+s12 space s11
+s12 punc s1
+s12 Alpha s1
+s12 digit s1
+s12 alpha s1
 s0 punc s1
 s0 Alpha s1
 s0 digit s1

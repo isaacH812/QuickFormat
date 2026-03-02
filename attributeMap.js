@@ -13,7 +13,22 @@ class AttributeMap{
             case "h":
                 div.style.height = value;
                 break;
-
+            case "mb":
+                div.style.marginBottom = value;
+                break;
+            case "mt":
+                div.style.marginTop = value;
+                break;
+            case "my":
+                div.style.marginTop = value;
+                div.style.marginBottom = value;
+                break;
+            case "txt":
+                div.style.fontSize = value
+                break;
+            case "!":
+                div.classList.add('tag')
+                break;
             default:
                 console.warn(`Unknown style, name: ${name}, value: ${value}, target: ${div}`)
                 break;

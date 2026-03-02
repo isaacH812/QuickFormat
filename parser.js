@@ -26,12 +26,12 @@ class Parser{
         const parseExpression = (parent) => {
             return parseContent(parent);
         }
-        const parseContent = (parent) => {
+        const parseContent = (parent, textParent) => {
             while(this._peek() !== null && this._peek().type !== 'DelimClose'){
-                parseItem(parent)
+                parseItem(parent, textParent)
             }
         }
-        const parseItem = (parent) => {
+        const parseItem = (parent, textParent) => {
             const token = this._peek();
             if(token.type === "Tag"){
                 return parseTag(parent);
@@ -40,7 +40,11 @@ class Parser{
                 this._consume("Text");
                 let textSpan = document.createElement("span");
                 textSpan.innerText = token.value
-                parent.appendChild(textSpan);
+                if(textParent){
+                    textParent.appendChild(textSpan);
+                }else{
+                    parent.appendChild(textSpan);
+                }
             }
             else{
                 throw new Error("Unexpected Item to Parse: " + token.value + "|" + token.type)
@@ -50,7 +54,7 @@ class Parser{
         const parseTag = (parent) => {
 
             const token = this._consume("Tag"); 
-            let tagDiv = this._getTagHTML(token)
+            const {tagDiv, textDiv} = this._getTagHTML(token)
 
             let t = this._peek();
             if(t && t.type === "AttOpen"){
@@ -97,6 +101,7 @@ class Parser{
 
     _getTagHTML(token){
         let tagDiv = null;
+        let textDiv = null;
         switch(token.value){
             case "B":
                 tagDiv = document.createElement("b");
@@ -108,6 +113,20 @@ class Parser{
             case "Col":
                 tagDiv = document.createElement("div");
                 tagDiv.classList.add("col")
+                break;
+            case "Ul":
+                tagDiv = document.createElement("ul");
+                break;
+            case "Li":
+                tagDiv = document.createElement("li");
+                break;
+            case "Cen":
+                tagDiv = document.createElement("div");
+                tagDiv.classList.add("cen")
+                break;
+            case "Hline":
+                tagDiv = document.createElement("div");
+                tagDiv.classList.add("hline")
                 break;
             case "P":
                 tagDiv = document.createElement("p");
@@ -121,21 +140,28 @@ class Parser{
                 console.error("ERROR: unknown tag: " + token)
 
             }
-            tagDiv.classList.add("tag");
-        return tagDiv;
+            // tagDiv.classList.add("tag"); // used for highlighting boundaries
+        return {tagDiv, textDiv};
     }
 
-    _getStyle(part, div){ // part should be w-{number/number}
+    _getStyle(part, div){ // part should be w-[number/number] or w-[number] or !
         if(!part.includes("-")){
-            console.warn("Unknown Attribute: ", part)
+            this.attributes.applyStyle(part, 0, div);
+            return;
         }
+
         const parts = part.split("-");
         const name = parts[0];
-        const value = this._parseFraction(parts[1]);
+        let value = parts[1];
+        if(value.includes("/")){
+            value = this._parseFraction(value);
+        }
+        else{
+            value = `${value}px`
+        }
         console.log(`Got atributes of name: ${name}, value: ${value} `);
 
         this.attributes.applyStyle(name, value, div);
-
 
     }
 

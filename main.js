@@ -31,3 +31,11 @@ TEXT_INPUT.addEventListener('keydown', (e) => {
     sel.addRange(range)
   }
 })
+
+document.getElementById('preview').addEventListener('mouseover', (e) => {
+  e.target.classList.add('hovered');
+});
+
+document.getElementById('preview').addEventListener('mouseout', (e) => {
+  e.target.classList.remove('hovered');
+});
