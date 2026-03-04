@@ -1,0 +1,64 @@
+
+ul, p{
+    margin: 0.1em;
+}
+
+.hovered {
+    outline: 2px solid red;
+}
+
+.page {
+    width: 816px;
+    min-width: 816px;
+    background-color: white;
+    margin: 0; 
+    padding: 48px; 
+    box-sizing: border-box;
+}
+
+.tag{
+    border: solid red;
+}
+
+.row{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+}
+
+.col{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+}
+
+.cen{
+    position: relative;
+    text-align: center;
+}
+.hline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hline::before,
+.hline::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: black;
+}
+
+.hline:empty {
+    display: block;
+    height: 1px;
+    background-color: black;
+}
+
+.hline:empty::before,
+.hline:empty::after {
+    display: none;
+}

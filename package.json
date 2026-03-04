@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "express": "^5.2.1",
+    "pdfcrowd": "^6.5.4",
+    "puppeteer-html-pdf": "^4.0.8"
+  }
+}
