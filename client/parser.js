@@ -40,6 +40,7 @@ class Parser{
                 this._consume("Text");
                 let textSpan = document.createElement("span");
                 textSpan.innerText = token.value
+                textSpan.dataset.index = token.index;
                 if(textParent){
                     textParent.appendChild(textSpan);
                 }else{
@@ -103,43 +104,43 @@ class Parser{
         let tagDiv = null;
         let textDiv = null;
         switch(token.value){
-            case "B":
+            case "\\B":
                 tagDiv = document.createElement("b");
                 break;
-            case "Row":
+            case "\\Row":
                 tagDiv = document.createElement("div");
                 tagDiv.classList.add("row")
                 break;
-            case "Col":
+            case "\\Col":
                 tagDiv = document.createElement("div");
                 tagDiv.classList.add("col")
                 break;
-            case "Ul":
+            case "\\Ul":
                 tagDiv = document.createElement("ul");
                 break;
-            case "Li":
+            case "\\Li":
                 tagDiv = document.createElement("li");
                 break;
-            case "Cen":
+            case "\\Cen":
                 tagDiv = document.createElement("div");
                 tagDiv.classList.add("cen")
                 break;
-            case "Hline":
+            case "\\Hline":
                 tagDiv = document.createElement("div");
                 tagDiv.classList.add("hline")
                 break;
-            case "P":
+            case "\\P":
                 tagDiv = document.createElement("p");
                 break;
-            case "I":
+            case "\\I":
                 tagDiv = document.createElement("i");
                 break;
                 
             default:
                 tagDiv = document.createElement("div");
-                console.error("ERROR: unknown tag: " + token)
-
+                // console.error("ERROR: unknown tag: " + token)
             }
+            tagDiv.dataset.index = token.index;
             // tagDiv.classList.add("tag"); // used for highlighting boundaries
         return {tagDiv, textDiv};
     }
@@ -159,7 +160,7 @@ class Parser{
         else{
             value = `${value}px`
         }
-        console.log(`Got atributes of name: ${name}, value: ${value} `);
+        // console.log(`Got atributes of name: ${name}, value: ${value} `);
 
         this.attributes.applyStyle(name, value, div);
 

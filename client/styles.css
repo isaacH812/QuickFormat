@@ -17,11 +17,16 @@ body {
     background-color: rgb(0, 0, 0);
 }
 
+
+
 .editor {
     width: 50%;
+    font-size: smaller;
+    color: rgb(224, 223, 223);
+    caret-color: rgb(0, 255, 174); /* or whatever color you want */
     overflow-y: auto;
     min-height: 0;        /* ← same fix for nested flex child */
-    background-color: rgb(252, 252, 251);
+    background-color: rgb(29, 29, 29);
     font-family: monospace;
     white-space: pre-wrap;
     overflow-wrap: break-word;
@@ -56,5 +61,6 @@ body {
 .divider:hover, .divider.dragging {
     background-color: rgb(120, 100, 80);
 }
+
 
 

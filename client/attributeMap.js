@@ -23,6 +23,10 @@ class AttributeMap{
                 div.style.marginTop = value;
                 div.style.marginBottom = value;
                 break;
+            case "split":
+                div.style.display = "flex";
+                div.style.justifyContent = "space-between";
+                break;
             case "txt":
                 div.style.fontSize = value
                 break;

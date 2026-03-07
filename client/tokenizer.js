@@ -1,14 +1,30 @@
+/*
+Token Types
+s11 Ignore
+s1 Text
+s2 Tag
+s3 Digit
+s4 DelimClose
+s5 DelimOpen
+s6 AttOpen
+s7 AttClose
+
+*/
 class Token{
     constructor(type, value){
         this.type = type;
         this.value = value;
         this.index = -1;
-        this.errors = [];
 
     }
 
     toString(){
         return `<${this.value},${this.type}> @ ${this.index}`;
+    }
+
+    getSyntaxHTML(){
+        return `<span class="element">${this.value}</span>`
+
     }
 }
 
@@ -20,7 +36,7 @@ class Tokenizer{
 
     tokenize(input) {
         const tokens = [];
-        let remaining = input.trim();
+        let remaining = input;
         const startLength = remaining.length;
     
         while (remaining.length > 0) {
@@ -38,9 +54,6 @@ class Tokenizer{
             // chop off however many characters were consumed
             remaining = remaining.substring(token.value.length);
             
-            if(token.type === "Tag"){
-                token.value = token.value.substring(1); // remove the start tag symbol
-            }
         }
     
         return tokens;
