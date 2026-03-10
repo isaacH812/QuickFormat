@@ -14,9 +14,12 @@ app.post("/convert", async (req, res) => {
   try {
     const content = css + " " + req.body.html;
     const htmlPDF = new PuppeteerHTMLPDF();
+    //  width: 615px;
+    //  height: 792px;
     const options = {
-      format: "A4",
       path: `${__dirname}/sample.pdf`,
+      width: "615px",
+      height: "792px",
     };
     htmlPDF.setOptions(options);
     await htmlPDF.create(content);

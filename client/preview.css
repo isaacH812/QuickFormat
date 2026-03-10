@@ -8,12 +8,16 @@ ul, p{
 }
 
 .page {
-    width: 816px;
-    min-width: 816px;
+    width: 615px;
+    min-width: 615px;
+    height: 792px;
+    min-height: 792px;
     background-color: white;
     margin: 0; 
     padding: 48px; 
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
 .tag{
@@ -22,14 +26,14 @@ ul, p{
 
 .row{
     position: relative;
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     width: fit-content;
 }
 
 .col{
     position: relative;
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     height: fit-content;
 }

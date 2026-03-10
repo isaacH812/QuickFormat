@@ -24,11 +24,14 @@ class AttributeMap{
                 div.style.marginBottom = value;
                 break;
             case "split":
-                div.style.display = "flex";
+                div.style.display = "inline-flex";
                 div.style.justifyContent = "space-between";
                 break;
             case "txt":
                 div.style.fontSize = value
+                break;
+            case "spacing":
+                div.style.letterSpacing = value
                 break;
             case "!":
                 div.classList.add('tag')

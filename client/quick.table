@@ -65,6 +65,7 @@ punc &
 punc %
 punc $
 punc -
+punc –
 punc @
 punc _
 punc '
@@ -105,7 +106,7 @@ s0 ignore s11
 s11 space s11
 s11 ignore s11
 
-// Text ( allows trailing a space )
+// Text ( allows a single trailing space )
 s0 space s12
 s12 space s11
 s12 punc s1
@@ -131,10 +132,6 @@ s2 Alpha s2
 // Attributes
 s0 AttOpen s6
 s0 AttClose s7
-
-
-// Capitals in Word
-s1 Alpha s1
 
 // Deliminator
 s0 delimClose s4

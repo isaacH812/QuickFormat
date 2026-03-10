@@ -94,7 +94,7 @@ class Parser{
             throw new Error("Unexpected End of Input!");
         }
         if(expected && expected !== token.type){
-            throw new Error(`Expected ${expected}, but got ${token.value}`);
+            throw new Error(`Expected ${expected}, but got ${token.value} @ ${token.index}`);
         }
         this.pos += 1;
         return token;
@@ -134,6 +134,9 @@ class Parser{
                 break;
             case "\\I":
                 tagDiv = document.createElement("i");
+                break;
+            case "\\S":
+                tagDiv = document.createElement("span");
                 break;
                 
             default:
