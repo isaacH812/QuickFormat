@@ -36,6 +36,7 @@ class Tokenizer{
 
     tokenize(input) {
         const tokens = [];
+        const ignored = [];
         let remaining = input;
         const startLength = remaining.length;
     
@@ -51,12 +52,15 @@ class Tokenizer{
              
                 tokens.push(token);
             }
+            else{
+                ignored.push(token);
+            }
             // chop off however many characters were consumed
             remaining = remaining.substring(token.value.length);
             
         }
     
-        return tokens;
+        return {tokens, ignored};
     }
 
     nextToken(input){

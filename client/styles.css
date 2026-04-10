@@ -49,8 +49,22 @@ body {
 }
 
 .options {
-    height: 5%;
+    display: flex;
+    flex-direction: row;
+    height: 10%;
     flex-shrink: 0;       /* ← prevents options bar from squishing */
+}
+
+.options > .console{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border: solid black 1px;
+    padding: 1rem;
+    overflow-y: auto;
+}
+.console > .log{
+
 }
 
 .divider {

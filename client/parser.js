@@ -12,14 +12,14 @@ s7 AttClose
 */
 
 class Parser{
-    constructor(tokens){
-        this.tokens = tokens;
-        this.pos = 0;
+    constructor(){
         this.attributes = new AttributeMap();
-        this.errors = [];
     }
 
-    parse() {
+    parse(tokens) {
+        let logs = [];
+        this.pos = 0;
+        this.tokens = tokens;
         let pageBody = document.createElement("div");
         pageBody.classList.add("page");
 
@@ -48,7 +48,8 @@ class Parser{
                 }
             }
             else{
-                throw new Error("Unexpected Item to Parse: " + token.value + "|" + token.type)
+                this._consume() // try to ignore it
+                logs.push(`Unexpected Item to Parse: Token - ${token.value}, Type - ${token.type} @ index ${token.index}`);
             }
 
         }
@@ -81,7 +82,7 @@ class Parser{
     
         parseExpression(pageBody);
 
-        return pageBody;
+        return {pageBody, logs};
     }
 
     _peek(){

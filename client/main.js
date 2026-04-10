@@ -2,9 +2,11 @@ const RENDER = document.getElementById("render-button");
 const EDITOR = document.getElementById("editor");
 const PREVIEW = document.getElementById("preview");
 const SAVE = document.getElementById("save-button");
+const CONSOLE = document.getElementById('console');
 const SEL = new Selector();
 const TAB_SIZE = 3;
 const tokenizer = new Tokenizer();
+const parser = new Parser();
 const db = new DB();
 let timer;
 
@@ -19,18 +21,30 @@ async function htmlToPdf(html) {
   window.open(url); // opens the PDF in a new tab
 }
 
+function updateLogs(newLogs){
+  CONSOLE.innerHTML = "";
+  newLogs.forEach((log,i)=>{
+      let newLog = document.createElement("div");
+      newLog.classList.add("log"); 
+      newLog.innerText = i+1 + ": " + log;
+      CONSOLE.appendChild(newLog);
+  }); 
+}
+
 const startingText = db.load('page');
 EDITOR.innerText = startingText ? startingText : "";
+
+
+
 
 EDITOR.addEventListener("input",(_)=>{
     clearTimeout(timer);
     timer = setTimeout(()=>{
-      const tokens = tokenizer.tokenize(EDITOR.innerText);
-      // console.log(tokens);
-  
-      const parser = new Parser(tokens);
-      const output = parser.parse();
-      PREVIEW.replaceChildren(output);
+      const {tokens, ignored} = tokenizer.tokenize(EDITOR.innerText);
+      console.log(tokens, ignored);
+      const {pageBody, logs} = parser.parse(tokens);
+      PREVIEW.replaceChildren(pageBody);
+      updateLogs(logs);
     }, 200);
 })
 
